@@ -1,0 +1,79 @@
+﻿@model Lakhani.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <!-- Card -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <!-- Title -->
+                    <h3 class="card-title text-center mb-4">
+                        <i class="fa fa-user-circle"></i> Login
+                    </h3>
+
+                    <!-- 🔴 TempData Error Display -->
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["Error"]  <!-- Ye wahi message dikhaega jo controller me set hua -->
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <!-- Form -->
+                    <form asp-action="Login" method="post">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3 position-relative">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Enter Password" />
+                            <i class="fa fa-eye password-toggle" onclick="togglePassword()" style="position:absolute; right:15px; top:38px; cursor:pointer;"></i>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Password Toggle Script -->
+<script>
+    function togglePassword() {
+        var password = document.getElementById("password");
+        var icon = document.querySelector(".password-toggle");
+
+        if (password.type === "password") {
+            password.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            password.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>

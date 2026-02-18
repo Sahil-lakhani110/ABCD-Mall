@@ -1,0 +1,88 @@
+﻿@model Lakhani.Models.Movies
+
+@{
+    ViewData["Title"] = "Book Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <h3 class="text-center mb-4 fw-bold">
+                        Book @Model.MovieName
+                    </h3>
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["Error"]
+                        </div>
+                    }
+
+                    <form asp-controller="Movie" asp-action="Book" method="post">
+                        <input type="hidden" name="MovieId" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Available Seats</label>
+                            <input class="form-control" value="@Model.AvailableSeats" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" name="UserName" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Seats</label>
+                            <input type="number"
+                                   id="seatsInput"
+                                   name="SeatsBooked"
+                                   class="form-control"
+                                   min="1"
+                                   max="@Model.AvailableSeats"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Price Per Seat</label>
+                            <input class="form-control" value="1000" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Total Amount</label>
+                            <input type="text"
+                                   id="totalAmount"
+                                   class="form-control fw-bold text-success"
+                                   readonly />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 rounded-3">
+                            Proceed to Payment
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const seatInput = document.getElementById("seatsInput");
+    const totalAmount = document.getElementById("totalAmount");
+    const pricePerSeat = 1000;
+
+    seatInput.addEventListener("input", function () {
+        let seats = parseInt(this.value);
+        if (!isNaN(seats)) {
+            totalAmount.value = seats * pricePerSeat;
+        } else {
+            totalAmount.value = "";
+        }
+    });
+</script>

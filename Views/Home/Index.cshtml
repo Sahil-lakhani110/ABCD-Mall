@@ -1,0 +1,161 @@
+﻿@model Lakhani.Models.ShopIndexViewModel;
+@using Lakhani.Models;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ===== HERO / BANNER ===== -->
+<div class="hero">
+    <div class="hero-content">
+        <h1 class="display-4 fw-bold">Welcome to ABCD Mall</h1>
+        <p class="lead">Shop • Dine • Enjoy • Relax</p>
+        <a asp-controller="Home" asp-action="AboutUs" class="btn btn-theme mt-3">Explore Mall</a>
+    </div>
+</div>
+
+<!-- ===== MALL DETAILS ===== -->
+<div class="container my-5">
+    <div class="section-light shadow">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>About ABCD Mall</h2>
+                <p>
+                    ABCD Mall is a premium shopping and entertainment destination
+                    featuring branded stores, food courts, and a luxury cinema.
+                </p>
+                <p>
+                    Designed for families and friends to enjoy comfort, fun and shopping
+                    all under one roof.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <img src="~/ShopImage/Mall1.jpg" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SHOPS ===== -->
+<div class="section-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Shops</h2>
+
+        <div class="row g-4 justify-content-center">
+            @if (Model.Shops != null && Model.Shops.Any())
+            {
+                foreach (var shop in Model.Shops.Take(12))
+                {
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div class="card h-100 shadow-sm border-0 shop-card text-center">
+                            <img src="~/ShopImage/@shop.Image"
+                                 class="card-img-top p-3"
+                                 alt="@shop.ShopName"
+                                 style="height:120px; object-fit:contain;">
+
+                            <div class="card-body p-2">
+                                <h6 class="fw-semibold mb-1">@shop.ShopName</h6>
+                                <p class="text-muted small mb-0">@shop.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center text-muted">
+                    <p>No shops added yet.</p>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-controller="Home" asp-action="Shop" class="btn btn-theme">
+                View More Shops
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ===== GALLERY ===== -->
+<div class="section-gray">
+    <div class="container">
+        <h2 class="text-center mb-4">Gallery</h2>
+
+        <div class="row g-4">
+            @if (Model.Galleries != null && Model.Galleries.Any())
+            {
+                foreach (var gallery in Model.Galleries.Take(12))
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <div class="gallery-card shadow">
+                            <img src="~/ShopImage/@gallery.Image" class="w-100">
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center text-muted">
+                    <p>No Galleries added yet.</p>
+                </div>
+            }
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-controller="Home" asp-action="Gallery" class="btn btn-theme">
+                Show More
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FEEDBACK ===== -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Feedback</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="feedback-card shadow">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success text-center">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                <form asp-controller="Home" asp-action="SubmitFeedback" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input asp-for="Feedback.Name" type="text" class="form-control" name="Name" required>
+                        <span asp-validation-for="Feedback.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input asp-for="Feedback.Email" type="email" class="form-control" name="Email" required>
+                        <span asp-validation-for="Feedback.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea asp-for="Feedback.Message" class="form-control" rows="4" name="Message" required></textarea>
+                        <span asp-validation-for="Feedback.Message" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-theme">Submit Feedback</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

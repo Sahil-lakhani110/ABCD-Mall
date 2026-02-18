@@ -1,0 +1,46 @@
+﻿@using Lakhani.Models;
+@model IEnumerable<Lakhani.Models.Gallery>
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Our Gallery</h2>
+        <p class="text-muted">Explore Galleries available in the mall</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        @if (Model != null && Model.Any())
+        {
+            int counter = 0;
+
+            foreach (var gallery in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-card shadow">
+                        <img src="~/ShopImage/@gallery.Image" class="w-100">
+                    </div>
+                </div>
+
+                counter++;
+
+                if (counter % 12 == 0)
+                {
+                    <div class="col-12 my-4">
+                        <hr />
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <div class="text-center text-muted">
+                <p>No Galleries added yet.</p>
+            </div>
+        }
+
+    </div>
+
+</div>

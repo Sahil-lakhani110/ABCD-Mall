@@ -1,0 +1,119 @@
+﻿@using Lakhani.Models
+@model IEnumerable<Lakhani.Models.FoodCourts>
+
+@{
+    ViewData["Title"] = "FoodCourt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ===================== FOODCOURT BANNER ===================== -->
+<div id="foodBannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <img src="~/ShopImage/Banner 4.jpg" class="d-block w-100 banner-img" alt="Food Court 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Delicious Food Awaits</h3>
+                <p>Enjoy flavors from around the world</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/ShopImage/Banner 5.jpg" class="d-block w-100 banner-img" alt="Food Court 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Top Restaurants & Brands</h3>
+                <p>Fast Food • Desi • Continental</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/ShopImage/Banner 6.jpg" class="d-block w-100 banner-img" alt="Food Court 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Taste the Best</h3>
+                <p>Your favorite meals in one place</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#foodBannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#foodBannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- ===================== FOODCOURT SECTION ===================== -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Our FoodCourts</h2>
+        <p class="text-muted">Explore FoodCourts in the mall</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        @if (Model != null && Model.Any())
+        {
+            int counter = 0;
+
+            foreach (var food in Model)
+            {
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="card h-100 shadow-sm border-0 shop-card text-center">
+                        <img src="~/ShopImage/@food.ImagePath"
+                             class="card-img-top p-3"
+                             alt="@food.CounterName"
+                             style="height:120px; object-fit:contain;">
+
+                        <div class="card-body p-2">
+                            <h6 class="fw-semibold mb-1">@food.CounterName</h6>
+                            <p class="text-muted small mb-0">@food.ItemName</p>
+                        </div>
+                    </div>
+                </div>
+
+                counter++;
+
+                if (counter % 12 == 0)
+                {
+                    <div class="col-12 my-4">
+                        <hr />
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <div class="text-center text-muted">
+                <p>No Foodcourts added yet.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- ===================== STYLES ===================== -->
+<style>
+    .banner-img {
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .carousel-caption {
+        background: rgba(0,0,0,0.5);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .shop-card {
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+        .shop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+</style>

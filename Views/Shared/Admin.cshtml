@@ -1,0 +1,145 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Admin Panel</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #1f2937;
+            color: #fff;
+        }
+
+            .sidebar h3 {
+                text-align: center;
+                padding: 20px 0;
+                margin: 0;
+                background: #111827;
+                color: white;
+            }
+
+            .sidebar a {
+                display: block;
+                padding: 14px 20px;
+                color: #d1d5db;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+                .sidebar a:hover {
+                    background: #374151;
+                    color: #fff;
+                }
+
+        /* ===== CONTENT ===== */
+        .main-content {
+            margin-left: 240px;
+            padding: 25px;
+        }
+
+        .top-bar {
+            background: #fff;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        <a asp-controller="Admin" asp-action="Index">
+            <h3>Admin Panel</h3>
+        </a>
+
+        <a asp-controller="Shop" asp-action="ViewShop">
+            <i class="fa fa-store me-2"></i> Shops
+        </a>
+
+        <a asp-controller="FoodCourt" asp-action="ViewFoodCourt">
+            <i class="fa fa-utensils me-2"></i> Food Courts
+        </a>
+
+        <a asp-controller="Movie" asp-action="ViewMovie">
+            <i class="fa fa-film me-2"></i> Movies
+        </a>
+
+        <a asp-controller="Gallery" asp-action="ViewGallery">
+            <i class="fa fa-image me-2"></i> Gallery
+        </a>
+
+        <a asp-controller="Admin" asp-action="ViewBookings">
+            <i class="fa fa-image me-2"></i> Bookings
+        </a>
+
+        <a asp-controller="Admin" asp-action="ViewFeedback">
+            <i class="fa fa-image me-2"></i> Feedbacks
+        </a>
+
+        <a asp-controller="Admin" asp-action="ViewContact">
+            <i class="fa fa-image me-2"></i> Contacts
+        </a>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content">
+
+        <div class="top-bar d-flex justify-content-between align-items-center">
+
+            <h5 class="mb-0">@ViewBag.Title</h5>
+
+            <div>
+                @{
+                    var adminName = Context.Session.GetString("Admin");
+                }
+
+                @if (!string.IsNullOrEmpty(adminName))
+                {
+                    <span class="me-3">
+                        <i class="fa fa-user-circle"></i>
+                        Welcome, <strong>@adminName</strong>
+                    </span>
+
+                    <a asp-controller="Admin" asp-action="Logout" class="btn btn-danger btn-sm">
+                        <i class="fa fa-sign-out-alt"></i> Logout
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Signup" asp-action="Login" class="btn btn-primary btn-sm">
+                        <i class="fa fa-sign-in-alt"></i> Login
+                    </a>
+                }
+            </div>
+
+        </div>
+
+        @RenderBody()
+
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

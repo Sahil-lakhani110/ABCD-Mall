@@ -1,0 +1,81 @@
+﻿@model Lakhani.Models.Shops
+
+@{
+    ViewData["Title"] = "Add Shop";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Add New Shop</h2>
+        <p class="text-muted">Create a new shop for the mall directory</p>
+    </div>
+
+    <!-- ===== FORM CARD ===== -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form asp-action="Shop" enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row">
+
+                    <!-- Shop Name -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ShopName" class="form-label fw-semibold"></label>
+                        <input asp-for="ShopName" class="form-control" placeholder="Enter shop name" />
+                        <span asp-validation-for="ShopName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Category" class="form-label fw-semibold"></label>
+                        <input asp-for="Category" class="form-control" placeholder="e.g. Clothing, Electronics" />
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-12 mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Description"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Enter shop description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Image" class="form-label fw-semibold"></label>
+                        <input asp-for="Image" name="Image" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Save Shop
+                    </button>
+
+                    <a asp-action="ViewShop" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,171 @@
+﻿@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ================= HERO SECTION ================= -->
+<div class="about-hero text-center text-white d-flex align-items-center justify-content-center">
+    <div>
+        <h1 class="fw-bold display-4">Welcome to Lakhani Mall</h1>
+        <p class="lead">Your Ultimate Shopping & Entertainment Destination</p>
+    </div>
+</div>
+
+<!-- ================= INTRO SECTION ================= -->
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">About Our Mall</h2>
+        <p class="text-muted">
+            Lakhani Mall is a modern lifestyle destination offering shopping, dining,
+            entertainment and family fun — all under one roof.
+        </p>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="~/ShopImage/Gemini_Generated_Image_u059fhu059fhu059.png"
+                 class="img-fluid rounded shadow" alt="Mall Structure">
+        </div>
+        <div class="col-md-6">
+            <h4 class="fw-bold">Mall Structure & Facilities</h4>
+            <p>
+                Our mall consists of multiple floors including premium shopping outlets,
+                a spacious food court, a modern cinema, and a dedicated kids entertainment zone.
+            </p>
+            <ul>
+                <li>Fully Air Conditioned Environment</li>
+                <li>Secure Parking Area</li>
+                <li>Prayer Area</li>
+                <li>Family Sitting Lounges</li>
+                <li>24/7 Security System</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SHOPPING SECTION ================= -->
+<div class="section-bg py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 class="fw-bold">Shopping Centers</h3>
+                <p>
+                    Explore a wide range of national and international brands including fashion,
+                    electronics, accessories, perfumes, and much more.
+                </p>
+
+                <a asp-controller="Home" asp-action="Shop"
+                   class="btn custom-btn mt-3">
+                    Explore More
+                </a>
+            </div>
+            <div class="col-md-6">
+                <img src="~/ShopImage/Shopping Centers.jpg"
+                     class="img-fluid rounded shadow" alt="Shopping">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= FOOD COURT SECTION ================= -->
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="~/ShopImage/food-court-at-ocean-mall.jpg"
+                 class="img-fluid rounded shadow" alt="Food Court">
+        </div>
+        <div class="col-md-6">
+            <h3 class="fw-bold">Food Court</h3>
+            <p>
+                Enjoy delicious meals from top restaurants and fast food chains.
+                From desi cuisine to continental dishes, we serve flavors for everyone.
+            </p>
+
+            <a asp-controller="Home" asp-action="FoodCourt"
+               class="btn custom-btn mt-3">
+                Explore More
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ================= CINEMA SECTION ================= -->
+<div class="section-bg py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 class="fw-bold">Cinema & Movies</h3>
+                <p>
+                    Watch the latest blockbuster movies in our fully digital cinema
+                    with comfortable seating and premium sound system.
+                </p>
+
+                <a asp-controller="Home" asp-action="Movies"
+                   class="btn custom-btn mt-3">
+                    Explore More
+                </a>
+            </div>
+            <div class="col-md-6">
+                <img src="~/ShopImage/atrium-3.jpg"
+                     class="img-fluid rounded shadow" alt="Cinema">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= WONDERLAND SECTION ================= -->
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="~/ShopImage/images.jpg"
+                 class="img-fluid rounded shadow" alt="Wonder Land">
+        </div>
+        <div class="col-md-6">
+            <h3 class="fw-bold">Oneder Land – Kids Zone</h3>
+            <p>
+                A fun-filled entertainment zone for kids with rides, games,
+                and exciting activities to make family visits more enjoyable.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+    .about-hero {
+        height: 450px;
+        background: url('/ShopImage/mall-atrium.jpg') center/cover no-repeat;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .section-bg {
+        background: #f8f9fa;
+    }
+
+    img {
+        border-radius: 15px;
+        transition: transform 0.4s ease;
+    }
+
+        img:hover {
+            transform: scale(1.03);
+        }
+
+    /* Custom Button Styling */
+    .custom-btn {
+        padding: 10px 25px;
+        border-radius: 50px;
+        border: 2px solid #000;
+        background-color: transparent;
+        color: #000;
+        font-weight: 600;
+        transition: all 0.4s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+</style>

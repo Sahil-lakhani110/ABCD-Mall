@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ABCD Mall</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Lakhani.styles.css" asp-append-version="true" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- ================= NAVBAR ================= -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    🏬 ABCD Mall
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Shop">
+                                Shopping Centers
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="FoodCourt">
+                                Food Courts
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Movies">
+                                Movies
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Gallery">
+                                Galleries
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Feeback">
+                                Feedback
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">
+                                Contact Us
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="AboutUs">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- SEARCH BAR -->
+                    <form class="d-flex" method="get" asp-controller="Search" asp-action="Index">
+                        <input class="form-control me-2" type="search" name="query"
+                               placeholder="Search shops or food..." />
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= PAGE CONTENT ================= -->
+    <div class="container-fluid" style="margin-top:90px;">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-dark text-light mt-5">
+        <div class="container py-5">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <h5>ABCD Mall</h5>
+                    <p>
+                        Your one-stop destination for shopping,
+                        dining and entertainment with multiplex cinema.
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="Shop">Shopping Centers</a></li>
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="FoodCourt">Food Courts</a></li>
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="Movies">Movies</a></li>
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="Gallery">Galleries</a></li>
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="Feeback">Feedback</a></li>
+                        <li><a class="text-light text-decoration-none" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Contact Details</h5>
+                    <p><i class="fa fa-location-dot"></i> Grand City Mall, Main Boulevard, Toronto</p>
+                    <p><i class="fa fa-phone"></i> +1 234 567 890</p>
+                    <p><i class="fa fa-envelope"></i> info@abcdmall.com</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center bg-black py-3">
+            © 2026 ABCD Mall | All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

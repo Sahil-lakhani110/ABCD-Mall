@@ -1,0 +1,47 @@
+﻿@model Lakhani.Models.MovieBookings
+
+@{
+    ViewData["Title"] = "Booking Confirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4 text-center">
+
+                    <h2 class="text-success fw-bold mb-3">🎉 Booking Confirmed!</h2>
+                    <p class="text-muted mb-4">Your payment was successful. Here are your ticket details.</p>
+
+                    <div class="text-start mx-auto" style="max-width:500px;">
+                        <p class="mb-2"><strong>Booking ID:</strong> @Model.Id</p>
+                        <p class="mb-2"><strong>Name:</strong> @Model.UserName</p>
+                        <p class="mb-2"><strong>Movie:</strong> @Model.Movie?.MovieName</p>
+                        <p class="mb-2"><strong>Show Time:</strong> @Model.Movie?.ShowTime</p>
+                        <p class="mb-2"><strong>Seats:</strong> @Model.SeatsBooked</p>
+                        <p class="mb-2"><strong>Total Paid:</strong> Rs @Model.Amount</p>
+                        <p class="mb-2"><strong>Date:</strong> @Model.BookingDate.ToString("dd MMM yyyy, hh:mm tt")</p>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a asp-controller="Movie" asp-action="DownloadTicket" asp-route-id="@Model.Id"
+                           class="btn btn-success px-4">
+                            📄 Download Ticket (PDF)
+                        </a>
+
+                        <a asp-controller="Home" asp-action="Movies"
+                           class="btn btn-outline-primary px-4">
+                            Back to Movies
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

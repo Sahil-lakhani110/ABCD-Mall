@@ -1,0 +1,238 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADING ===== -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Admin Dashboard</h2>
+        <p class="text-muted">Manage shops, food courts, movies, gallery, bookings, feedbacks, and contacts from here</p>
+    </div>
+
+    <!-- ===== STATS CARDS ===== -->
+    <div class="row g-4 mb-4">
+
+        <!-- Shops -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-primary fs-2">
+                        <i class="fa fa-store"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Total Shops</h6>
+                        <h4 class="fw-bold">@ViewBag.ShopCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Courts -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-success fs-2">
+                        <i class="fa fa-utensils"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Food Courts</h6>
+                        <h4 class="fw-bold">@ViewBag.FoodCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Movies -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-danger fs-2">
+                        <i class="fa fa-film"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Movies</h6>
+                        <h4 class="fw-bold">@ViewBag.MovieCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-warning fs-2">
+                        <i class="fa fa-image"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Gallery</h6>
+                        <h4 class="fw-bold">@ViewBag.GalCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-primary fs-2">
+                        <i class="fa fa-ticket-alt"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Bookings</h6>
+                        <h4 class="fw-bold">@ViewBag.BookCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedbacks -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-info fs-2">
+                        <i class="fa fa-comments"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Feedbacks</h6>
+                        <h4 class="fw-bold">@ViewBag.feedCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 hover-card">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-secondary fs-2">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0">Contacts</h6>
+                        <h4 class="fw-bold">@ViewBag.conCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== QUICK ACTIONS ===== -->
+    <div class="row g-4">
+
+        <!-- Manage Shops -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-store fs-1 text-primary mb-3"></i>
+                    <h5>Manage Shops</h5>
+                    <p class="text-muted">Add, edit or remove shopping stores</p>
+                    <a asp-controller="Shop" asp-action="ViewShop" class="btn btn-outline-primary">
+                        Go to Shops
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Food Courts -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-utensils fs-1 text-success mb-3"></i>
+                    <h5>Manage Food Courts</h5>
+                    <p class="text-muted">Control food court listings and details</p>
+                    <a asp-controller="FoodCourt" asp-action="ViewFoodCourt" class="btn btn-outline-success">
+                        Go to Food Courts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Movies -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-film fs-1 text-danger mb-3"></i>
+                    <h5>Manage Movies</h5>
+                    <p class="text-muted">Add movies and manage show timings</p>
+                    <a asp-controller="Movie" asp-action="ViewMovie" class="btn btn-outline-danger">
+                        Go to Movies
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Gallery -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-image fs-1 text-warning mb-3"></i>
+                    <h5>Manage Gallery</h5>
+                    <p class="text-muted">Add Gallery and details</p>
+                    <a asp-controller="Gallery" asp-action="ViewGallery" class="btn btn-outline-warning">
+                        Go to Gallery
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Bookings -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-ticket-alt fs-1 text-primary mb-3"></i>
+                    <h5>Manage Bookings</h5>
+                    <p class="text-muted">View all movie ticket bookings</p>
+                    <a asp-controller="Admin" asp-action="ViewBookings" class="btn btn-outline-primary">
+                        Go to Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Feedbacks -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-comments fs-1 text-info mb-3"></i>
+                    <h5>Manage Feedbacks</h5>
+                    <p class="text-muted">View customer feedback</p>
+                    <a asp-controller="Admin" asp-action="ViewFeedback" class="btn btn-outline-info">
+                        Go to Feedbacks
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Contacts -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-sm border-0 h-100 hover-card">
+                <div class="card-body text-center">
+                    <i class="fa fa-envelope fs-1 text-secondary mb-3"></i>
+                    <h5>Manage Contacts</h5>
+                    <p class="text-muted">View customer queries</p>
+                    <a asp-controller="Admin" asp-action="ViewContact" class="btn btn-outline-secondary">
+                        Go to Contacts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .hover-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+</style>

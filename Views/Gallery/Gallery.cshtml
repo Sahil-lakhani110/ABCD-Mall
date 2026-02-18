@@ -1,0 +1,62 @@
+﻿@model Lakhani.Models.Gallery
+
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Add New Gallery</h2>
+        <p class="text-muted">Create a new Gallery for the mall directory</p>
+    </div>
+
+    <!-- ===== FORM CARD ===== -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form asp-action="Gallery" enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Image" class="form-label fw-semibold"></label>
+                        <input asp-for="Image" name="Image" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Save Gallery
+                    </button>
+
+                    <a asp-action="ViewGallery" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

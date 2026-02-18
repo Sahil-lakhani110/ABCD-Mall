@@ -1,0 +1,81 @@
+﻿@model Lakhani.Models.FoodCourts
+
+@{
+    ViewData["Title"] = "Add Food Item";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Add Food Item</h2>
+        <p class="text-muted">Create a new food counter item</p>
+    </div>
+
+    <!-- ===== FORM CARD ===== -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form asp-action="FoodCourt" enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row">
+
+                    <!-- Counter Name -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CounterName" class="form-label fw-semibold"></label>
+                        <input asp-for="CounterName" class="form-control" />
+                        <span asp-validation-for="CounterName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Item Name -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ItemName" class="form-label fw-semibold"></label>
+                        <input asp-for="ItemName" class="form-control" />
+                        <span asp-validation-for="ItemName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label fw-semibold"></label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="ImagePath" class="form-label fw-semibold">Food Image</label>
+                        <input asp-for="ImagePath"
+                               type="file"
+                               name="Image"
+                               class="form-control" />
+                        <span asp-validation-for="ImagePath" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Save Item
+                    </button>
+
+                    <a asp-action="ViewFoodCourt" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

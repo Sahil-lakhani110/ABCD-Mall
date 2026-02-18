@@ -1,0 +1,157 @@
+﻿@model Lakhani.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+
+    <!-- ===== PAGE TITLE ===== -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Search Results</h2>
+        <p class="text-muted">
+            Showing results for:
+            <span class="text-dark fw-semibold">"@Model.Query"</span>
+        </p>
+    </div>
+
+    @if (!Model.Movies.Any() && !Model.FoodCourts.Any() && !Model.Shops.Any())
+    {
+        <div class="text-center mt-5">
+            <h5 class="text-muted">No results found.</h5>
+            <p class="text-muted">Try searching with a different keyword.</p>
+        </div>
+    }
+    else
+    {
+        <!-- ================= MOVIES ================= -->
+        @if (Model.Movies.Any())
+        {
+            <div class="mb-5">
+                <h4 class="section-title mb-4">🎬 Movies</h4>
+
+                <div class="row g-4">
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="card h-100 shadow-sm border-0 search-card text-center">
+                                <div class="img-wrapper">
+                                    <img src="~/ShopImage/@movie.Image"
+                                         alt="@movie.MovieName">
+                                </div>
+
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">@movie.MovieName</h6>
+                                    <p class="text-muted small mb-1">
+                                        Show Time: @movie.ShowTime.ToString(@"hh\:mm")
+                                    </p>
+                                    <p class="text-muted small">
+                                        Seats: @movie.AvailableSeats
+                                    </p>
+
+                                    <a asp-controller="Movie"
+                                       asp-action="Book"
+                                       asp-route-id="@movie.Id"
+                                       class="btn btn-primary btn-sm">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- ================= FOOD COURTS ================= -->
+        @if (Model.FoodCourts.Any())
+        {
+            <div class="mb-5">
+                <h4 class="section-title mb-4">🍔 Food Courts</h4>
+
+                <div class="row g-4">
+                    @foreach (var food in Model.FoodCourts)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="card h-100 shadow-sm border-0 search-card text-center">
+                                <div class="img-wrapper">
+                                    <img src="~/ShopImage/@food.ImagePath"
+                                         alt="@food.CounterName">
+                                </div>
+
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">@food.CounterName</h6>
+                                    <p class="text-muted small">
+                                        @food.ItemName
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- ================= SHOPS ================= -->
+        @if (Model.Shops.Any())
+        {
+            <div class="mb-5">
+                <h4 class="section-title mb-4">🛍 Shops</h4>
+
+                <div class="row g-4">
+                    @foreach (var shop in Model.Shops)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="card h-100 shadow-sm border-0 search-card text-center">
+                                <div class="img-wrapper">
+                                    <img src="~/ShopImage/@shop.Image"
+                                         alt="@shop.ShopName">
+                                </div>
+
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">@shop.ShopName</h6>
+                                    <p class="text-muted small">
+                                        @shop.Description
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<style>
+    .section-title {
+        font-weight: 600;
+        border-left: 5px solid #0d6efd;
+        padding-left: 10px;
+    }
+
+    .search-card {
+        border-radius: 14px;
+        transition: all 0.3s ease;
+    }
+
+        .search-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .img-wrapper {
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+    }
+
+        .img-wrapper img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+</style>

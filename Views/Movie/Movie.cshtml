@@ -1,0 +1,83 @@
+﻿@model Lakhani.Models.Movies
+
+@{
+    ViewData["Title"] = "Add Movie";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Add New Movie</h2>
+        <p class="text-muted">Create a new movie listing for the cinema</p>
+    </div>
+
+    <!-- ===== FORM CARD ===== -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form asp-action="Movie" enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row">
+
+                    <!-- Movie Name -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="MovieName" class="form-label fw-semibold"></label>
+                        <input asp-for="MovieName" class="form-control" placeholder="Enter movie name" />
+                        <span asp-validation-for="MovieName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Show Time -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ShowTime" class="form-label fw-semibold"></label>
+                        <input asp-for="ShowTime" type="time" class="form-control" />
+                        <span asp-validation-for="ShowTime" class="text-danger"></span>
+                    </div>
+
+                    <!-- Total Seats -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TotalSeats" class="form-label fw-semibold"></label>
+                        <input asp-for="TotalSeats" class="form-control" placeholder="Total seats available" />
+                        <span asp-validation-for="TotalSeats" class="text-danger"></span>
+                    </div>
+
+                    <!-- Available Seats -->
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="AvailableSeats" class="form-label fw-semibold"></label>
+                        <input asp-for="AvailableSeats" class="form-control" placeholder="Seats currently available" />
+                        <span asp-validation-for="AvailableSeats" class="text-danger"></span>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Image" class="form-label fw-semibold"></label>
+                        <input asp-for="Image" name="Image" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Save Movie
+                    </button>
+
+                    <a asp-action="ViewMovie" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

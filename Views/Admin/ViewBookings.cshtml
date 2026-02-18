@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Lakhani.Models.MovieBookings>
+
+@{
+    ViewData["Title"] = "View Bookings";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">View Bookings</h2>
+            <p class="text-muted mb-0">All movie ticket bookings are listed here</p>
+        </div>
+    </div>
+
+    <!-- ===== TABLE CARD ===== -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Movie</th>
+                            <th>User Name</th>
+                            <th>Seats</th>
+                            <th>Booking Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Movie?.MovieName</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.SeatsBooked</td>
+                                    <td>@item.BookingDate.ToString("dd MMM yyyy, hh:mm tt")</td>
+                                    <td>Rs @item.Amount</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No bookings found.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

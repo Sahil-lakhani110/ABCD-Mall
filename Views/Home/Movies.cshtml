@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Lakhani.Models.Movies>
+
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ===================== BANNER SECTION ===================== -->
+<div id="moviesBannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <img src="~/ShopImage/Banner 7.jpg" class="d-block w-100 banner-img" alt="Banner 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Now Showing</h3>
+                <p>Book your tickets for latest movies</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/ShopImage/Banner 8.jpg" class="d-block w-100 banner-img" alt="Banner 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Experience the Best Cinema</h3>
+                <p>Comfortable seats, great screens</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/ShopImage/Banner 9.jpg" class="d-block w-100 banner-img" alt="Banner 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Exciting Releases Every Week</h3>
+                <p>Don’t miss the latest blockbusters</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#moviesBannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#moviesBannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- ===================== MOVIES SECTION ===================== -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Now Showing</h2>
+        <p class="text-muted">Book your tickets for the latest movies in our mall theater</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        @if (Model != null && Model.Any())
+        {
+            int counter = 0;
+
+            foreach (var movie in Model)
+            {
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="card h-100 shadow-sm border-0 movie-card text-center">
+                        <div class="movie-img-wrapper p-3">
+                            <img src="~/ShopImage/@movie.Image"
+                                 class="card-img-top"
+                                 alt="@movie.MovieName">
+                        </div>
+
+                        <div class="card-body p-2">
+                            <h6 class="fw-semibold mb-1">@movie.MovieName</h6>
+                            <p class="text-muted small mb-1">Show Time: @movie.ShowTime.ToString(@"hh\:mm")</p>
+                            <p class="text-muted small mb-1">Available Seats: @movie.AvailableSeats</p>
+
+                            @if (movie.AvailableSeats > 0)
+                            {
+                                <a asp-controller="Movie" asp-action="Book" asp-route-id="@movie.Id" class="btn btn-primary btn-sm mt-1">
+                                    Book Now
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger mt-1">Full</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                counter++;
+                if (counter % 12 == 0)
+                {
+                    <div class="col-12 my-4">
+                        <hr />
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <div class="text-center text-muted">
+                <p>No movies are currently available.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .banner-img {
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .carousel-caption {
+        background: rgba(0,0,0,0.5);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .movie-card {
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+    .movie-img-wrapper {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .movie-img-wrapper img {
+            max-height: 100%;
+            width: auto;
+            border-radius: 12px;
+        }
+</style>
